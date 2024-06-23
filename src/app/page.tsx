@@ -2,7 +2,6 @@ import { apolloClient } from "@/lib/apolloClient";
 import {
   AssetCollectionDocument,
   AssetCollectionQuery,
-  Query,
   QueryAssetCollectionArgs,
 } from "@/generated/schema";
 import { LgtmImage } from "@/app/components/LgtmImage";
