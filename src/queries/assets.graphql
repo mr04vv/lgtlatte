@@ -1,0 +1,8 @@
+query AssetCollection($limit: Int, $skip: Int) {
+  assetCollection(limit: $limit, skip: $skip) {
+    items {
+      title
+      url
+    }
+  }
+}
