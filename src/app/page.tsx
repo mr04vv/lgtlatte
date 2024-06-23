@@ -11,7 +11,7 @@ export default async function Home() {
     query: AssetCollectionDocument,
     variables: {
       skip: 0,
-      limit: 1,
+      limit: 20,
     },
   });
 
