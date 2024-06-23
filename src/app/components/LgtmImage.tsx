@@ -9,11 +9,9 @@ export const LgtmImage = ({ url }: { url: string }) => {
       loader={imageLoader}
       src={url}
       alt="post"
-      sizes="100vw"
-      fill
-      style={{
-        width: "100%",
-      }}
+      width={1080}
+      height={900}
+      className="object-contain w-full h-full"
     />
   );
 };

@@ -21,18 +21,31 @@ export default async function Home() {
 
   const items = res.data.assetCollection?.items ?? [];
 
+  //   const items = [
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://latte-images.mooriii.com/baa515b9-3958-4693-b1a1-f56351a6e21c.webp",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://latte-images.mooriii.com/baa515b9-3958-4693-b1a1-f56351a6e21c.webp",
+  //     "https://latte-images.mooriii.com/baa515b9-3958-4693-b1a1-f56351a6e21c.webp",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
+  //   ];
+
   return (
-    <main>
-      <div>
+    <main className="flex items-center m-auto flex-col max-w-[1240px]">
+      <h2 className="">
+        愛猫「らて」のLGTM画像を集めました。ご自由にお使いください。
+      </h2>
+
+      <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3  max-md:grid-cols-1 my-10 max-xl:mx-4">
         {items.map((item) => (
-          <div
-            style={{
-              display: "block",
-              position: "relative",
-              width: "500px",
-              height: "300px",
-            }}
-          >
+          <div className="h-auto max-h-96 w-auto relative">
             <LgtmImage url={item?.url ?? ""} />
           </div>
         ))}
