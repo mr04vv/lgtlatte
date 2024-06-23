@@ -458,7 +458,7 @@ export type AssetCollectionQueryVariables = Exact<{
 }>;
 
 
-export type AssetCollectionQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null } | null> } | null };
+export type AssetCollectionQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null, width?: number | null } | null> } | null };
 
 export type AssetCollectionTotalQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -472,6 +472,7 @@ export const AssetCollectionDocument = gql`
     items {
       title
       url
+      width
     }
   }
 }

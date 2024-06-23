@@ -3,6 +3,7 @@ query AssetCollection($limit: Int, $skip: Int) {
     items {
       title
       url
+      width
     }
   }
 }
