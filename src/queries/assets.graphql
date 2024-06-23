@@ -6,3 +6,9 @@ query AssetCollection($limit: Int, $skip: Int) {
     }
   }
 }
+
+query AssetCollectionTotal {
+  assetCollection {
+    total
+  }
+}

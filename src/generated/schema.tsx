@@ -460,6 +460,11 @@ export type AssetCollectionQueryVariables = Exact<{
 
 export type AssetCollectionQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null } | null> } | null };
 
+export type AssetCollectionTotalQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AssetCollectionTotalQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', total: number } | null };
+
 
 export const AssetCollectionDocument = gql`
     query AssetCollection($limit: Int, $skip: Int) {
@@ -505,3 +510,42 @@ export type AssetCollectionQueryHookResult = ReturnType<typeof useAssetCollectio
 export type AssetCollectionLazyQueryHookResult = ReturnType<typeof useAssetCollectionLazyQuery>;
 export type AssetCollectionSuspenseQueryHookResult = ReturnType<typeof useAssetCollectionSuspenseQuery>;
 export type AssetCollectionQueryResult = Apollo.QueryResult<AssetCollectionQuery, AssetCollectionQueryVariables>;
+export const AssetCollectionTotalDocument = gql`
+    query AssetCollectionTotal {
+  assetCollection {
+    total
+  }
+}
+    `;
+
+/**
+ * __useAssetCollectionTotalQuery__
+ *
+ * To run a query within a React component, call `useAssetCollectionTotalQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAssetCollectionTotalQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAssetCollectionTotalQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAssetCollectionTotalQuery(baseOptions?: Apollo.QueryHookOptions<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>(AssetCollectionTotalDocument, options);
+      }
+export function useAssetCollectionTotalLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>(AssetCollectionTotalDocument, options);
+        }
+export function useAssetCollectionTotalSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>(AssetCollectionTotalDocument, options);
+        }
+export type AssetCollectionTotalQueryHookResult = ReturnType<typeof useAssetCollectionTotalQuery>;
+export type AssetCollectionTotalLazyQueryHookResult = ReturnType<typeof useAssetCollectionTotalLazyQuery>;
+export type AssetCollectionTotalSuspenseQueryHookResult = ReturnType<typeof useAssetCollectionTotalSuspenseQuery>;
+export type AssetCollectionTotalQueryResult = Apollo.QueryResult<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>;
