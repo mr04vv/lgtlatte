@@ -42,7 +42,7 @@ export default async function Home() {
         ))}
       </div>
       <Snackbar />
-      <div className="absolute bottom-0 flex justify-around w-full">
+      <div className="absolute bottom-0 flex justify-around w-screen">
         <PageButton isActive={false} page={0}>
           ←
         </PageButton>
