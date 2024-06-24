@@ -6,6 +6,7 @@ import {
 } from "@/generated/schema";
 import { LgtmImage } from "@/app/components/LgtmImage";
 import { SIZE_PER_PAGE } from "./constants/sizePerPage";
+import { Snackbar } from "./components/Snackbar";
 
 export default async function Home() {
   const res = await apolloClient.query<
@@ -38,9 +39,9 @@ export default async function Home() {
   //   ];
 
   return (
-    <main className="flex items-center m-auto flex-col max-w-[1240px]">
+    <main className="flex items-center m-auto flex-col max-w-[1240px] my-10">
       <h2 className="">
-        愛猫「らて」のLGTM画像を集めました。ご自由にお使いください。
+        愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。
       </h2>
 
       <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3  max-md:grid-cols-1 my-10 max-xl:mx-4">
@@ -50,6 +51,7 @@ export default async function Home() {
           </div>
         ))}
       </div>
+      <Snackbar />
     </main>
   );
 }
