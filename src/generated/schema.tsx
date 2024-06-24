@@ -172,10 +172,19 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  lgtlatteOgpCollection?: Maybe<LgtlatteOgpCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsLgtlatteOgpCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -357,12 +366,149 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']['input']>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgp = Entry & {
+  __typename?: 'LgtlatteOgp';
+  contentfulMetadata: ContentfulMetadata;
+  description?: Maybe<Scalars['String']['output']>;
+  favicon?: Maybe<Asset>;
+  image?: Maybe<Asset>;
+  linkedFrom?: Maybe<LgtlatteOgpLinkingCollections>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+  twitterAccountId?: Maybe<Scalars['String']['output']>;
+  twitterCardSize?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpFaviconArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpTwitterAccountIdArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpTwitterCardSizeArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type LgtlatteOgpCollection = {
+  __typename?: 'LgtlatteOgpCollection';
+  items: Array<Maybe<LgtlatteOgp>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type LgtlatteOgpFilter = {
+  AND?: InputMaybe<Array<InputMaybe<LgtlatteOgpFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<LgtlatteOgpFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  favicon_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  twitterAccountId?: InputMaybe<Scalars['String']['input']>;
+  twitterAccountId_contains?: InputMaybe<Scalars['String']['input']>;
+  twitterAccountId_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  twitterAccountId_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  twitterAccountId_not?: InputMaybe<Scalars['String']['input']>;
+  twitterAccountId_not_contains?: InputMaybe<Scalars['String']['input']>;
+  twitterAccountId_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  twitterCardSize?: InputMaybe<Scalars['String']['input']>;
+  twitterCardSize_contains?: InputMaybe<Scalars['String']['input']>;
+  twitterCardSize_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  twitterCardSize_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  twitterCardSize_not?: InputMaybe<Scalars['String']['input']>;
+  twitterCardSize_not_contains?: InputMaybe<Scalars['String']['input']>;
+  twitterCardSize_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type LgtlatteOgpLinkingCollections = {
+  __typename?: 'LgtlatteOgpLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type LgtlatteOgpLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum LgtlatteOgpOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  TwitterAccountIdAsc = 'twitterAccountId_ASC',
+  TwitterAccountIdDesc = 'twitterAccountId_DESC',
+  TwitterCardSizeAsc = 'twitterCardSize_ASC',
+  TwitterCardSizeDesc = 'twitterCardSize_DESC'
+}
+
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  lgtlatteOgp?: Maybe<LgtlatteOgp>;
+  lgtlatteOgpCollection?: Maybe<LgtlatteOgpCollection>;
 };
 
 
@@ -397,6 +543,23 @@ export type QueryEntryCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryLgtlatteOgpArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryLgtlatteOgpCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<LgtlatteOgpOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<LgtlatteOgpFilter>;
 };
 
 export type Sys = {
@@ -458,17 +621,29 @@ export type AssetCollectionQueryVariables = Exact<{
 }>;
 
 
-export type AssetCollectionQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null, width?: number | null } | null> } | null };
+export type AssetCollectionQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', total: number, items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null, width?: number | null } | null> } | null };
 
 export type AssetCollectionTotalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AssetCollectionTotalQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', total: number } | null };
 
+export type LgtlatteOgpQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type LgtlatteOgpQuery = { __typename?: 'Query', lgtlatteOgp?: { __typename?: 'LgtlatteOgp', title?: string | null, description?: string | null, twitterCardSize?: string | null, twitterAccountId?: string | null, image?: { __typename?: 'Asset', url?: string | null } | null, favicon?: { __typename?: 'Asset', url?: string | null } | null } | null };
+
 
 export const AssetCollectionDocument = gql`
     query AssetCollection($limit: Int, $skip: Int) {
-  assetCollection(limit: $limit, skip: $skip) {
+  assetCollection(
+    where: {contentfulMetadata: {tags: {id_contains_some: ["lgtm"]}}}
+    limit: $limit
+    skip: $skip
+  ) {
+    total
     items {
       title
       url
@@ -513,7 +688,9 @@ export type AssetCollectionSuspenseQueryHookResult = ReturnType<typeof useAssetC
 export type AssetCollectionQueryResult = Apollo.QueryResult<AssetCollectionQuery, AssetCollectionQueryVariables>;
 export const AssetCollectionTotalDocument = gql`
     query AssetCollectionTotal {
-  assetCollection {
+  assetCollection(
+    where: {contentfulMetadata: {tags: {id_contains_some: ["lgtm"]}}}
+  ) {
     total
   }
 }
@@ -550,3 +727,52 @@ export type AssetCollectionTotalQueryHookResult = ReturnType<typeof useAssetColl
 export type AssetCollectionTotalLazyQueryHookResult = ReturnType<typeof useAssetCollectionTotalLazyQuery>;
 export type AssetCollectionTotalSuspenseQueryHookResult = ReturnType<typeof useAssetCollectionTotalSuspenseQuery>;
 export type AssetCollectionTotalQueryResult = Apollo.QueryResult<AssetCollectionTotalQuery, AssetCollectionTotalQueryVariables>;
+export const LgtlatteOgpDocument = gql`
+    query LgtlatteOgp($id: String!) {
+  lgtlatteOgp(id: $id) {
+    title
+    description
+    twitterCardSize
+    twitterAccountId
+    image {
+      url
+    }
+    favicon {
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useLgtlatteOgpQuery__
+ *
+ * To run a query within a React component, call `useLgtlatteOgpQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLgtlatteOgpQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLgtlatteOgpQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useLgtlatteOgpQuery(baseOptions: Apollo.QueryHookOptions<LgtlatteOgpQuery, LgtlatteOgpQueryVariables> & ({ variables: LgtlatteOgpQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LgtlatteOgpQuery, LgtlatteOgpQueryVariables>(LgtlatteOgpDocument, options);
+      }
+export function useLgtlatteOgpLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LgtlatteOgpQuery, LgtlatteOgpQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LgtlatteOgpQuery, LgtlatteOgpQueryVariables>(LgtlatteOgpDocument, options);
+        }
+export function useLgtlatteOgpSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<LgtlatteOgpQuery, LgtlatteOgpQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<LgtlatteOgpQuery, LgtlatteOgpQueryVariables>(LgtlatteOgpDocument, options);
+        }
+export type LgtlatteOgpQueryHookResult = ReturnType<typeof useLgtlatteOgpQuery>;
+export type LgtlatteOgpLazyQueryHookResult = ReturnType<typeof useLgtlatteOgpLazyQuery>;
+export type LgtlatteOgpSuspenseQueryHookResult = ReturnType<typeof useLgtlatteOgpSuspenseQuery>;
+export type LgtlatteOgpQueryResult = Apollo.QueryResult<LgtlatteOgpQuery, LgtlatteOgpQueryVariables>;

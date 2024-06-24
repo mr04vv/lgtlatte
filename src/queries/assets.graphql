@@ -1,5 +1,10 @@
 query AssetCollection($limit: Int, $skip: Int) {
-  assetCollection(limit: $limit, skip: $skip) {
+  assetCollection(
+    where: { contentfulMetadata: { tags: { id_contains_some: ["lgtm"] } } }
+    limit: $limit
+    skip: $skip
+  ) {
+    total
     items {
       title
       url
@@ -9,7 +14,24 @@ query AssetCollection($limit: Int, $skip: Int) {
 }
 
 query AssetCollectionTotal {
-  assetCollection {
+  assetCollection(
+    where: { contentfulMetadata: { tags: { id_contains_some: ["lgtm"] } } }
+  ) {
     total
+  }
+}
+
+query LgtlatteOgp($id: String!) {
+  lgtlatteOgp(id: $id) {
+    title
+    description
+    twitterCardSize
+    twitterAccountId
+    image {
+      url
+    }
+    favicon {
+      url
+    }
   }
 }
