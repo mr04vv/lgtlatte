@@ -24,7 +24,6 @@ export const generateStaticParams = async () => {
   const totalPage = Math.ceil(totalCount / SIZE_PER_PAGE);
   const paths = Array.from({ length: totalPage }).map((_, i) => ({
     page: (i + 1).toString(),
-    totalPage: totalPage.toString(),
   }));
   return paths;
 };
@@ -43,8 +42,9 @@ export default async function Home({
   });
 
   const items = res.data.assetCollection?.items ?? [];
+  const totalCount = res.data.assetCollection?.total ?? 0;
+  const totalPage = Math.ceil(totalCount / SIZE_PER_PAGE);
   const page = Number(params.page);
-  const totalPage = Number(params.totalPage);
 
   return (
     <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4 min-h-screen relative">
@@ -54,7 +54,7 @@ export default async function Home({
       <h2 className="text-xl max-md:text-base">
         愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。
       </h2>
-      <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 my-10">
+      <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 mt-6 mb-16">
         {items.map((item) => (
           <div className="h-auto max-h-96 w-auto relative">
             <LgtmImage url={item?.url ?? ""} />
@@ -63,8 +63,12 @@ export default async function Home({
       </div>
       <Snackbar />
       <div className="absolute bottom-0 flex justify-around w-full">
-        {page > 1 && <PageButton page={page - 1}>←</PageButton>}
-        {page < totalPage && <PageButton page={page + 1}>→</PageButton>}
+        <PageButton isActived={page > 1} page={page - 1}>
+          ←
+        </PageButton>
+        <PageButton isActived={page < totalPage} page={page + 1}>
+          →
+        </PageButton>
       </div>
     </main>
   );
