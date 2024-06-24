@@ -39,12 +39,15 @@ export default async function Home() {
   //   ];
 
   return (
-    <main className="flex items-center m-auto flex-col max-w-[1240px] my-10">
-      <h2 className="">
+    <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4">
+      <header className="my-4">
+        <img src="/title.svg" alt="Vercel Logo" width={360} height={100} />
+      </header>
+      <h2 className="text-xl max-md:text-base">
         愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。
       </h2>
 
-      <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3  max-md:grid-cols-1 my-10 max-xl:mx-4">
+      <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 my-10">
         {items.map((item) => (
           <div className="h-auto max-h-96 w-auto relative">
             <LgtmImage url={item?.url ?? ""} />
