@@ -7,6 +7,7 @@ import {
 import { LgtmImage } from "@/app/components/LgtmImage";
 import { SIZE_PER_PAGE } from "./constants/sizePerPage";
 import { Snackbar } from "./components/Snackbar";
+import { PageButton } from "./components/PageButton";
 
 export default async function Home() {
   const res = await apolloClient.query<
@@ -21,22 +22,8 @@ export default async function Home() {
   });
 
   const items = res.data.assetCollection?.items ?? [];
-
-  //   const items = [
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://latte-images.mooriii.com/baa515b9-3958-4693-b1a1-f56351a6e21c.webp",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://latte-images.mooriii.com/baa515b9-3958-4693-b1a1-f56351a6e21c.webp",
-  //     "https://latte-images.mooriii.com/baa515b9-3958-4693-b1a1-f56351a6e21c.webp",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //     "https://blog.mooriii.com/ogps/bruno-cognito-auth.png",
-  //   ];
+  const totalCount = res.data.assetCollection?.total ?? 1;
+  const totalPage = Math.ceil(totalCount / SIZE_PER_PAGE);
 
   return (
     <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4">
@@ -49,12 +36,15 @@ export default async function Home() {
 
       <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 my-10">
         {items.map((item) => (
-          <div className="h-auto max-h-96 w-auto relative">
+          <div key={item?.title} className="h-auto max-h-96 w-auto relative">
             <LgtmImage url={item?.url ?? ""} />
           </div>
         ))}
       </div>
       <Snackbar />
+      <div className="absolute bottom-0 flex justify-around w-full">
+        {totalPage > 1 && <PageButton page={2}>→</PageButton>}
+      </div>
     </main>
   );
 }

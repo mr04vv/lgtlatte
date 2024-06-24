@@ -9,7 +9,7 @@ import {
 import { LgtmImage } from "@/app/components/LgtmImage";
 import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
 import { Snackbar } from "@/app/components/Snackbar";
-import Image from "next/image";
+import { PageButton } from "@/app/components/PageButton";
 
 export const generateStaticParams = async () => {
   const res = await apolloClient.query<
@@ -21,17 +21,19 @@ export const generateStaticParams = async () => {
 
   const totalCount = res.data.assetCollection?.total ?? 0;
 
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
-
-  const paths = range(1, Math.ceil(totalCount / SIZE_PER_PAGE)).map((num) => ({
-    page: `${num}`,
+  const totalPage = Math.ceil(totalCount / SIZE_PER_PAGE);
+  const paths = Array.from({ length: totalPage }).map((_, i) => ({
+    page: (i + 1).toString(),
+    totalPage: totalPage.toString(),
   }));
-
   return paths;
 };
 
-export default async function Home({ params }: { params: { page: string } }) {
+export default async function Home({
+  params,
+}: {
+  params: { page: string; totalPage: string };
+}) {
   const res = await apolloClient.query<Query, QueryAssetCollectionArgs>({
     query: AssetCollectionDocument,
     variables: {
@@ -41,9 +43,11 @@ export default async function Home({ params }: { params: { page: string } }) {
   });
 
   const items = res.data.assetCollection?.items ?? [];
+  const page = Number(params.page);
+  const totalPage = Number(params.totalPage);
 
   return (
-    <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4">
+    <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4 min-h-screen relative">
       <header className="my-4">
         <img src="/title.svg" alt="Vercel Logo" width={360} height={100} />
       </header>
@@ -58,6 +62,10 @@ export default async function Home({ params }: { params: { page: string } }) {
         ))}
       </div>
       <Snackbar />
+      <div className="absolute bottom-0 flex justify-around w-full">
+        {page > 1 && <PageButton page={page - 1}>←</PageButton>}
+        {page < totalPage && <PageButton page={page + 1}>→</PageButton>}
+      </div>
     </main>
   );
 }
