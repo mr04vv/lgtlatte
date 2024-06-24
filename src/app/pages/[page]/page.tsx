@@ -63,10 +63,10 @@ export default async function Home({
       </div>
       <Snackbar />
       <div className="absolute bottom-0 flex justify-around w-full">
-        <PageButton isActived={page > 1} page={page - 1}>
+        <PageButton isActive={page > 1} page={page - 1}>
           ←
         </PageButton>
-        <PageButton isActived={page < totalPage} page={page + 1}>
+        <PageButton isActive={page < totalPage} page={page + 1}>
           →
         </PageButton>
       </div>
