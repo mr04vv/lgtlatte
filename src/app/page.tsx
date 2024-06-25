@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 import { apolloClient } from "@/lib/apolloClient";
 import {
   AssetCollectionDocument,
