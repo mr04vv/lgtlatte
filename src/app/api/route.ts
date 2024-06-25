@@ -6,7 +6,7 @@ import { apolloClient } from "@/lib/apolloClient";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
-export const shuffleArray = <T>(array: readonly T[]): T[] => {
+const shuffleArray = <T>(array: readonly T[]): T[] => {
   if (array.length <= 1) {
     // 配列が空または要素が1つの場合、そのまま返す
     return [...array];
@@ -27,7 +27,10 @@ export const shuffleArray = <T>(array: readonly T[]): T[] => {
   return cloneArray;
 };
 
-export async function GET() {
+export async function GET(request: Request) {
+  const token = request.headers.get("token");
+  if (token !== process.env.API_TOKEN)
+    return Response.json({ message: "Unauthorized" }, { status: 401 });
   const res = await apolloClient.query<AssetCollectionQuery>({
     query: AssetCollectionDocument,
   });
