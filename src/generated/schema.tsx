@@ -700,7 +700,7 @@ export const AssetCollectionApiDocument = gql`
     total
     items {
       title
-      url(transform: {width: 540, height: 540, format: WEBP, quality: 80})
+      url(transform: {width: 540, height: 540, quality: 80})
       width
       height
     }
