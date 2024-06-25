@@ -9,6 +9,21 @@ query AssetCollection($limit: Int, $skip: Int) {
       title
       url
       width
+      height
+    }
+  }
+}
+
+query AssetCollectionAPI {
+  assetCollection(
+    where: { contentfulMetadata: { tags: { id_contains_some: ["lgtm"] } } }
+  ) {
+    total
+    items {
+      title
+      url(transform: { width: 540, height: 540, format: WEBP, quality: 80 })
+      width
+      height
     }
   }
 }

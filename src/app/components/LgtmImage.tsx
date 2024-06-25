@@ -13,7 +13,9 @@ export const LgtmImage = ({ url }: { url: string }) => {
       width={1080}
       height={600}
       onClick={() => {
-        navigator.clipboard.writeText(`![LGTM](${url})`);
+        navigator.clipboard.writeText(
+          `![LGTM](${url}?w=540&h=540&q=80&fm=webp)`
+        );
         const snackbar = document.getElementById("snackbar");
         snackbar?.classList.remove("opacity-0");
         setTimeout(() => {

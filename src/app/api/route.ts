@@ -1,6 +1,8 @@
 import {
   AssetCollectionQuery,
   AssetCollectionDocument,
+  AssetCollectionApiQuery,
+  AssetCollectionApiDocument,
 } from "@/generated/schema";
 import { apolloClient } from "@/lib/apolloClient";
 
@@ -31,8 +33,8 @@ export async function GET(request: Request) {
   const token = request.headers.get("token");
   if (token !== process.env.API_TOKEN)
     return Response.json({ message: "Unauthorized" }, { status: 401 });
-  const res = await apolloClient.query<AssetCollectionQuery>({
-    query: AssetCollectionDocument,
+  const res = await apolloClient.query<AssetCollectionApiQuery>({
+    query: AssetCollectionApiDocument,
   });
 
   const items = res.data.assetCollection?.items ?? [];

@@ -621,7 +621,12 @@ export type AssetCollectionQueryVariables = Exact<{
 }>;
 
 
-export type AssetCollectionQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', total: number, items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null, width?: number | null } | null> } | null };
+export type AssetCollectionQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', total: number, items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null, width?: number | null, height?: number | null } | null> } | null };
+
+export type AssetCollectionApiQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AssetCollectionApiQuery = { __typename?: 'Query', assetCollection?: { __typename?: 'AssetCollection', total: number, items: Array<{ __typename?: 'Asset', title?: string | null, url?: string | null, width?: number | null, height?: number | null } | null> } | null };
 
 export type AssetCollectionTotalQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -648,6 +653,7 @@ export const AssetCollectionDocument = gql`
       title
       url
       width
+      height
     }
   }
 }
@@ -686,6 +692,53 @@ export type AssetCollectionQueryHookResult = ReturnType<typeof useAssetCollectio
 export type AssetCollectionLazyQueryHookResult = ReturnType<typeof useAssetCollectionLazyQuery>;
 export type AssetCollectionSuspenseQueryHookResult = ReturnType<typeof useAssetCollectionSuspenseQuery>;
 export type AssetCollectionQueryResult = Apollo.QueryResult<AssetCollectionQuery, AssetCollectionQueryVariables>;
+export const AssetCollectionApiDocument = gql`
+    query AssetCollectionAPI {
+  assetCollection(
+    where: {contentfulMetadata: {tags: {id_contains_some: ["lgtm"]}}}
+  ) {
+    total
+    items {
+      title
+      url(transform: {width: 540, height: 540, format: WEBP, quality: 80})
+      width
+      height
+    }
+  }
+}
+    `;
+
+/**
+ * __useAssetCollectionApiQuery__
+ *
+ * To run a query within a React component, call `useAssetCollectionApiQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAssetCollectionApiQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAssetCollectionApiQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAssetCollectionApiQuery(baseOptions?: Apollo.QueryHookOptions<AssetCollectionApiQuery, AssetCollectionApiQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AssetCollectionApiQuery, AssetCollectionApiQueryVariables>(AssetCollectionApiDocument, options);
+      }
+export function useAssetCollectionApiLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AssetCollectionApiQuery, AssetCollectionApiQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AssetCollectionApiQuery, AssetCollectionApiQueryVariables>(AssetCollectionApiDocument, options);
+        }
+export function useAssetCollectionApiSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AssetCollectionApiQuery, AssetCollectionApiQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AssetCollectionApiQuery, AssetCollectionApiQueryVariables>(AssetCollectionApiDocument, options);
+        }
+export type AssetCollectionApiQueryHookResult = ReturnType<typeof useAssetCollectionApiQuery>;
+export type AssetCollectionApiLazyQueryHookResult = ReturnType<typeof useAssetCollectionApiLazyQuery>;
+export type AssetCollectionApiSuspenseQueryHookResult = ReturnType<typeof useAssetCollectionApiSuspenseQuery>;
+export type AssetCollectionApiQueryResult = Apollo.QueryResult<AssetCollectionApiQuery, AssetCollectionApiQueryVariables>;
 export const AssetCollectionTotalDocument = gql`
     query AssetCollectionTotal {
   assetCollection(
