@@ -48,5 +48,8 @@ export async function GET(request: Request) {
     })
     .slice(0, 15);
 
-  return Response.json({ images: shuffledArray });
+  return Response.json({
+    total: res.data.assetCollection?.total ?? 0,
+    images: shuffledArray,
+  });
 }

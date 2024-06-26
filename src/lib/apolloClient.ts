@@ -9,9 +9,6 @@ const link = new HttpLink({
   headers: {
     Authorization: `Bearer ${TOKEN}`,
   },
-  fetchOptions: {
-    cache: "force-cache",
-  },
 });
 
 const cache = new InMemoryCache();
