@@ -5,6 +5,7 @@ import {
 import { apolloClient } from "@/lib/apolloClient";
 
 export const dynamic = "force-dynamic"; // defaults to auto
+export const revalidate = 0;
 
 const shuffleArray = <T>(array: readonly T[]): T[] => {
   if (array.length <= 1) {
