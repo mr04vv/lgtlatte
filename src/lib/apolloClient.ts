@@ -16,4 +16,10 @@ const cache = new InMemoryCache();
 export const apolloClient = new ApolloClient({
   link,
   cache,
+  defaultOptions: {
+    query: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    },
+  },
 });

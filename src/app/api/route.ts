@@ -1,6 +1,4 @@
 import {
-  AssetCollectionQuery,
-  AssetCollectionDocument,
   AssetCollectionApiQuery,
   AssetCollectionApiDocument,
 } from "@/generated/schema";
