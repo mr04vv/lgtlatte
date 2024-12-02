@@ -28,10 +28,11 @@ export async function generateMetadata(): Promise<Metadata> {
     title: og.title,
     description: og.description,
     openGraph: {
-      url: og.image?.url ?? "",
+      url: og.url ?? "",
       title: og.title ?? "",
       description: og.description ?? "",
       siteName: og.title ?? "",
+      images: [og.image?.url ?? ""],
     },
     twitter: {
       card: og.twitterCardSize as any,

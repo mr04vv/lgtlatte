@@ -42,6 +42,7 @@ query LgtlatteOgp($id: String!) {
     description
     twitterCardSize
     twitterAccountId
+    url
     image {
       url
     }

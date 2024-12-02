@@ -216,10 +216,26 @@ export enum AssetOrder {
 
 export type ContentfulMetadata = {
   __typename?: 'ContentfulMetadata';
+  concepts: Array<Maybe<TaxonomyConcept>>;
   tags: Array<Maybe<ContentfulTag>>;
 };
 
+export type ContentfulMetadataConceptsDescendantsFilter = {
+  id_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  id_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  id_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ContentfulMetadataConceptsFilter = {
+  descendants?: InputMaybe<ContentfulMetadataConceptsDescendantsFilter>;
+  id_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  id_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  id_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type ContentfulMetadataFilter = {
+  concepts?: InputMaybe<ContentfulMetadataConceptsFilter>;
+  concepts_exists?: InputMaybe<Scalars['Boolean']['input']>;
   tags?: InputMaybe<ContentfulMetadataTagsFilter>;
   tags_exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -232,7 +248,7 @@ export type ContentfulMetadataTagsFilter = {
 
 /**
  * Represents a tag entity for finding and organizing content easily.
- *     Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
+ *       Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
  */
 export type ContentfulTag = {
   __typename?: 'ContentfulTag';
@@ -367,8 +383,9 @@ export type ImageTransformOptions = {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
-export type LgtlatteOgp = Entry & {
+export type LgtlatteOgp = Entry & _Node & {
   __typename?: 'LgtlatteOgp';
+  _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<Scalars['String']['output']>;
   favicon?: Maybe<Asset>;
@@ -378,6 +395,7 @@ export type LgtlatteOgp = Entry & {
   title?: Maybe<Scalars['String']['output']>;
   twitterAccountId?: Maybe<Scalars['String']['output']>;
   twitterCardSize?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -424,6 +442,12 @@ export type LgtlatteOgpTwitterCardSizeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
+
+/** [See type definition](https://app.contentful.com/spaces/rd8mwctho8md/content_types/lgtlatteOgp) */
+export type LgtlatteOgpUrlArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type LgtlatteOgpCollection = {
   __typename?: 'LgtlatteOgpCollection';
   items: Array<Maybe<LgtlatteOgp>>;
@@ -467,6 +491,13 @@ export type LgtlatteOgpFilter = {
   twitterCardSize_not?: InputMaybe<Scalars['String']['input']>;
   twitterCardSize_not_contains?: InputMaybe<Scalars['String']['input']>;
   twitterCardSize_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  url_contains?: InputMaybe<Scalars['String']['input']>;
+  url_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  url_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  url_not?: InputMaybe<Scalars['String']['input']>;
+  url_not_contains?: InputMaybe<Scalars['String']['input']>;
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type LgtlatteOgpLinkingCollections = {
@@ -498,7 +529,9 @@ export enum LgtlatteOgpOrder {
   TwitterAccountIdAsc = 'twitterAccountId_ASC',
   TwitterAccountIdDesc = 'twitterAccountId_DESC',
   TwitterCardSizeAsc = 'twitterCardSize_ASC',
-  TwitterCardSizeDesc = 'twitterCardSize_DESC'
+  TwitterCardSizeDesc = 'twitterCardSize_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
 }
 
 export type Query = {
@@ -611,6 +644,15 @@ export type SysFilter = {
   publishedVersion_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
 };
 
+/**
+ * Represents a tag entity for finding and organizing content easily.
+ *         Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
+ */
+export type TaxonomyConcept = {
+  __typename?: 'TaxonomyConcept';
+  id?: Maybe<Scalars['String']['output']>;
+};
+
 export type _Node = {
   _id: Scalars['ID']['output'];
 };
@@ -638,7 +680,7 @@ export type LgtlatteOgpQueryVariables = Exact<{
 }>;
 
 
-export type LgtlatteOgpQuery = { __typename?: 'Query', lgtlatteOgp?: { __typename?: 'LgtlatteOgp', title?: string | null, description?: string | null, twitterCardSize?: string | null, twitterAccountId?: string | null, image?: { __typename?: 'Asset', url?: string | null } | null, favicon?: { __typename?: 'Asset', url?: string | null } | null } | null };
+export type LgtlatteOgpQuery = { __typename?: 'Query', lgtlatteOgp?: { __typename?: 'LgtlatteOgp', title?: string | null, description?: string | null, twitterCardSize?: string | null, twitterAccountId?: string | null, url?: string | null, image?: { __typename?: 'Asset', url?: string | null } | null, favicon?: { __typename?: 'Asset', url?: string | null } | null } | null };
 
 
 export const AssetCollectionDocument = gql`
@@ -787,6 +829,7 @@ export const LgtlatteOgpDocument = gql`
     description
     twitterCardSize
     twitterAccountId
+    url
     image {
       url
     }
