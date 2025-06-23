@@ -14,6 +14,10 @@ export const Pagination = ({
   if (totalPages <= 1) return null;
 
   const getPageHref = (page: number) => {
+    if (basePath === "/newest/pages") {
+      if (page === 1) return "/newest";
+      return `${basePath}/${page}`;
+    }
     if (page === 1) return "/";
     return `${basePath}/${page}`;
   };
