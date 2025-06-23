@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { InfiniteScrollImages } from "@/app/components/InfiniteScrollImages";
+import { RandomImages } from "@/app/components/RandomImages";
 import { Snackbar } from "@/app/components/Snackbar";
 import { TabNavigation } from "@/app/components/TabNavigation";
 
@@ -54,11 +54,7 @@ export default async function RandomPage() {
 
       <TabNavigation />
 
-      <InfiniteScrollImages
-        initialImages={data.images}
-        initialTotal={data.total}
-        apiEndpoint="/api"
-      />
+      <RandomImages initialImages={data.images} />
 
       <Snackbar />
     </main>
