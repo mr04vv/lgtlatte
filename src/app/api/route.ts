@@ -32,6 +32,11 @@ export async function GET(request: Request) {
   const token = request.headers.get("token");
   if (token !== process.env.API_TOKEN)
     return Response.json({ message: "Unauthorized" }, { status: 401 });
+
+  const { searchParams } = new URL(request.url);
+  const skip = parseInt(searchParams.get("skip") ?? "0", 10);
+  const limit = parseInt(searchParams.get("limit") ?? "15", 10);
+
   const res = await apolloClient.query<AssetCollectionApiQuery>({
     query: AssetCollectionApiDocument,
   });
@@ -45,7 +50,7 @@ export async function GET(request: Request) {
         width: item?.width ?? 0,
       };
     })
-    .slice(0, 15);
+    .slice(skip, skip + limit);
 
   return Response.json({
     total: res.data.assetCollection?.total ?? 0,
