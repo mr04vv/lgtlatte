@@ -3,6 +3,7 @@ export const dynamic = "force-static";
 import { LgtmImage } from "@/app/components/LgtmImage";
 import { Pagination } from "@/app/components/Pagination";
 import { Snackbar } from "@/app/components/Snackbar";
+import { TabNavigation } from "@/app/components/TabNavigation";
 import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
 import {
   AssetCollectionDocument,
@@ -56,6 +57,9 @@ export default async function Home({
       <h2 className="text-xl max-md:text-base">
         愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。
       </h2>
+
+      <TabNavigation />
+
       <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 mt-6 mb-16">
         {items.map((item) => (
           <div key={item?.title} className="h-auto max-h-96 w-auto relative">

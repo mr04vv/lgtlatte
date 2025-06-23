@@ -9,6 +9,7 @@ import {
 import { apolloClient } from "@/lib/apolloClient";
 import { Pagination } from "./components/Pagination";
 import { Snackbar } from "./components/Snackbar";
+import { TabNavigation } from "./components/TabNavigation";
 import { SIZE_PER_PAGE } from "./constants/sizePerPage";
 
 export default async function Home() {
@@ -35,6 +36,8 @@ export default async function Home() {
       <h2 className="text-xl max-md:text-base">
         愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。
       </h2>
+
+      <TabNavigation />
 
       <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 mt-6 mb-16">
         {items.map((item) => (
