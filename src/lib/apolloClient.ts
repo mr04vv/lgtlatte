@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
 const TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
 const SPACE = process.env.CONTENTFUL_SPACE_ID;

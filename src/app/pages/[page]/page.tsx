@@ -1,16 +1,17 @@
 export const dynamic = "force-static";
-import { apolloClient } from "@/lib/apolloClient";
+
+import { LgtmImage } from "@/app/components/LgtmImage";
+import { Pagination } from "@/app/components/Pagination";
+import { Snackbar } from "@/app/components/Snackbar";
+import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
 import {
   AssetCollectionDocument,
   AssetCollectionTotalDocument,
-  AssetCollectionTotalQuery,
-  Query,
-  QueryAssetCollectionArgs,
+  type AssetCollectionTotalQuery,
+  type Query,
+  type QueryAssetCollectionArgs,
 } from "@/generated/schema";
-import { LgtmImage } from "@/app/components/LgtmImage";
-import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
-import { Snackbar } from "@/app/components/Snackbar";
-import { Pagination } from "@/app/components/Pagination";
+import { apolloClient } from "@/lib/apolloClient";
 
 export const generateStaticParams = async () => {
   const res = await apolloClient.query<

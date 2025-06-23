@@ -1,14 +1,15 @@
 export const dynamic = "force-static";
-import { apolloClient } from "@/lib/apolloClient";
+
+import { LgtmImage } from "@/app/components/LgtmImage";
 import {
   AssetCollectionDocument,
-  AssetCollectionQuery,
-  QueryAssetCollectionArgs,
+  type AssetCollectionQuery,
+  type QueryAssetCollectionArgs,
 } from "@/generated/schema";
-import { LgtmImage } from "@/app/components/LgtmImage";
-import { SIZE_PER_PAGE } from "./constants/sizePerPage";
-import { Snackbar } from "./components/Snackbar";
+import { apolloClient } from "@/lib/apolloClient";
 import { Pagination } from "./components/Pagination";
+import { Snackbar } from "./components/Snackbar";
+import { SIZE_PER_PAGE } from "./constants/sizePerPage";
 
 export default async function Home() {
   const res = await apolloClient.query<
