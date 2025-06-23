@@ -8,7 +8,7 @@ import {
 import { LgtmImage } from "@/app/components/LgtmImage";
 import { SIZE_PER_PAGE } from "./constants/sizePerPage";
 import { Snackbar } from "./components/Snackbar";
-import { PageButton } from "./components/PageButton";
+import { Pagination } from "./components/Pagination";
 
 export default async function Home() {
   const res = await apolloClient.query<
@@ -43,14 +43,7 @@ export default async function Home() {
         ))}
       </div>
       <Snackbar />
-      <div className="absolute bottom-0 flex justify-around w-screen">
-        <PageButton isActive={false} page={0}>
-          ←
-        </PageButton>
-        <PageButton isActive={totalPage > 1} page={2}>
-          →
-        </PageButton>
-      </div>
+      <Pagination currentPage={1} totalPages={totalPage} />
     </main>
   );
 }
