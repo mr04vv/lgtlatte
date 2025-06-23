@@ -1,14 +1,16 @@
 export const dynamic = "force-static";
-import { apolloClient } from "@/lib/apolloClient";
+
+import Image from "next/image";
+import { LgtmImage } from "@/app/components/LgtmImage";
 import {
   AssetCollectionDocument,
-  AssetCollectionQuery,
-  QueryAssetCollectionArgs,
+  type AssetCollectionQuery,
+  type QueryAssetCollectionArgs,
 } from "@/generated/schema";
-import { LgtmImage } from "@/app/components/LgtmImage";
-import { SIZE_PER_PAGE } from "./constants/sizePerPage";
-import { Snackbar } from "./components/Snackbar";
+import { apolloClient } from "@/lib/apolloClient";
 import { PageButton } from "./components/PageButton";
+import { Snackbar } from "./components/Snackbar";
+import { SIZE_PER_PAGE } from "./constants/sizePerPage";
 
 export default async function Home() {
   const res = await apolloClient.query<
@@ -29,7 +31,12 @@ export default async function Home() {
   return (
     <main className="flex items-center m-auto flex-col max-w-[1240px] my-4  max-xl:mx-4 relative">
       <header className="my-4">
-        <img src="/title.svg" alt="Vercel Logo" width={360} height={100} />
+        <Image
+          src="/title.svg"
+          alt="LGTM Latte Logo"
+          width={360}
+          height={100}
+        />
       </header>
       <h2 className="text-xl max-md:text-base">
         愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。

@@ -1,16 +1,18 @@
 export const dynamic = "force-static";
-import { apolloClient } from "@/lib/apolloClient";
+
+import Image from "next/image";
+import { LgtmImage } from "@/app/components/LgtmImage";
+import { PageButton } from "@/app/components/PageButton";
+import { Snackbar } from "@/app/components/Snackbar";
+import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
 import {
   AssetCollectionDocument,
   AssetCollectionTotalDocument,
-  AssetCollectionTotalQuery,
-  Query,
-  QueryAssetCollectionArgs,
+  type AssetCollectionTotalQuery,
+  type Query,
+  type QueryAssetCollectionArgs,
 } from "@/generated/schema";
-import { LgtmImage } from "@/app/components/LgtmImage";
-import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
-import { Snackbar } from "@/app/components/Snackbar";
-import { PageButton } from "@/app/components/PageButton";
+import { apolloClient } from "@/lib/apolloClient";
 
 export const generateStaticParams = async () => {
   const res = await apolloClient.query<
@@ -50,14 +52,22 @@ export default async function Home({
   return (
     <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4 min-h-screen relative">
       <header className="my-4">
-        <img src="/title.svg" alt="Vercel Logo" width={360} height={100} />
+        <Image
+          src="/title.svg"
+          alt="LGTM Latte Logo"
+          width={360}
+          height={100}
+        />
       </header>
       <h2 className="text-xl max-md:text-base">
         愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。
       </h2>
       <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 mt-6 mb-16">
-        {items.map((item) => (
-          <div className="h-auto max-h-96 w-auto relative">
+        {items.map((item, index) => (
+          <div
+            key={`${item?.url}-${index}`}
+            className="h-auto max-h-96 w-auto relative"
+          >
             <LgtmImage url={item?.url ?? ""} />
           </div>
         ))}

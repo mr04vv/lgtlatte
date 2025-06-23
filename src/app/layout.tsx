@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { apolloClient } from "@/lib/apolloClient";
 import {
   LgtlatteOgpDocument,
-  LgtlatteOgpQuery,
-  LgtlatteOgpQueryVariables,
+  type LgtlatteOgpQuery,
+  type LgtlatteOgpQueryVariables,
 } from "@/generated/schema";
+import { apolloClient } from "@/lib/apolloClient";
 
 export async function generateMetadata(): Promise<Metadata> {
   const res = await apolloClient.query<
@@ -35,8 +34,8 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [og.image?.url ?? ""],
     },
     twitter: {
-      card: og.twitterCardSize as any,
-      site: og.twitterAccountId as any,
+      card: og.twitterCardSize as "summary" | "summary_large_image",
+      site: og.twitterAccountId as string,
       images: [og.image?.url ?? ""],
       title: og.title ?? "",
       description: og.description ?? "",
