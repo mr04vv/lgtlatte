@@ -1,7 +1,7 @@
 export const dynamic = "force-static";
 
 import { LgtmImage } from "@/app/components/LgtmImage";
-import { PageButton } from "@/app/components/PageButton";
+import { Pagination } from "@/app/components/Pagination";
 import { Snackbar } from "@/app/components/Snackbar";
 import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
 import {
@@ -64,14 +64,7 @@ export default async function Home({
         ))}
       </div>
       <Snackbar />
-      <div className="absolute bottom-0 flex justify-around w-screen">
-        <PageButton isActive={page > 1} page={page - 1}>
-          ←
-        </PageButton>
-        <PageButton isActive={page < totalPage} page={page + 1}>
-          →
-        </PageButton>
-      </div>
+      <Pagination currentPage={page} totalPages={totalPage} />
     </main>
   );
 }
