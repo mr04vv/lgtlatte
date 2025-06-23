@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { LgtmImage } from './LgtmImage';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { LgtmImage } from "./LgtmImage";
 
 interface ImageData {
   url: string;
@@ -32,13 +32,13 @@ export const InfiniteScrollImages = ({
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(initialImages.length < initialTotal);
   const [skip, setSkip] = useState(initialImages.length);
-  
+
   const loaderRef = useRef<HTMLDivElement>(null);
   const isLoadingRef = useRef(false);
 
   const loadMoreImages = useCallback(async () => {
     if (isLoadingRef.current || !hasMore) return;
-    
+
     isLoadingRef.current = true;
     setIsLoading(true);
     setError(null);
@@ -46,7 +46,7 @@ export const InfiniteScrollImages = ({
     try {
       const response = await fetch(`${apiEndpoint}?skip=${skip}&limit=15`, {
         headers: {
-          'token': process.env.NEXT_PUBLIC_API_TOKEN || '',
+          token: process.env.API_TOKEN || "",
         },
       });
 
@@ -55,16 +55,16 @@ export const InfiniteScrollImages = ({
       }
 
       const data: ApiResponse = await response.json();
-      
+
       if (data.images.length > 0) {
-        setImages(prev => [...prev, ...data.images]);
-        setSkip(prev => prev + data.images.length);
+        setImages((prev) => [...prev, ...data.images]);
+        setSkip((prev) => prev + data.images.length);
         setHasMore(skip + data.images.length < data.total);
       } else {
         setHasMore(false);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load images');
+      setError(err instanceof Error ? err.message : "Failed to load images");
     } finally {
       setIsLoading(false);
       isLoadingRef.current = false;
@@ -106,7 +106,10 @@ export const InfiniteScrollImages = ({
     <div className="w-full">
       <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 mt-6 mb-16">
         {images.map((item, index) => (
-          <div key={`${item.title}-${index}`} className="h-auto max-h-96 w-auto relative">
+          <div
+            key={`${item.title}-${index}`}
+            className="h-auto max-h-96 w-auto relative"
+          >
             <LgtmImage url={item.url} />
           </div>
         ))}
@@ -125,6 +128,7 @@ export const InfiniteScrollImages = ({
         <div className="flex flex-col items-center py-8">
           <p className="text-red-600 text-lg mb-4">{error}</p>
           <button
+            type="button"
             onClick={retryLoad}
             className="px-6 py-3 bg-[#59370F] text-[#FCF0DE] rounded-md hover:opacity-70 transition-opacity duration-300"
           >
