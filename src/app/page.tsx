@@ -29,7 +29,7 @@ export default async function Home() {
   const totalPage = Math.ceil(totalCount / SIZE_PER_PAGE);
 
   return (
-    <main className="flex items-center m-auto flex-col max-w-[1240px] my-4  max-xl:mx-4 relative">
+    <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4 max-md:mx-2 relative">
       <header className="my-4">
         <img src="/title.svg" alt="Vercel Logo" width={360} height={100} />
       </header>
@@ -39,7 +39,7 @@ export default async function Home() {
 
       <TabNavigation />
 
-      <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 mt-6 mb-16">
+      <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4 mt-4 mb-16 max-md:mb-8 w-full">
         {items.map((item) => (
           <div key={item?.title} className="h-auto max-h-96 w-auto relative">
             <LgtmImage url={item?.url ?? ""} />
