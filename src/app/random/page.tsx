@@ -16,14 +16,14 @@ interface ApiResponse {
 }
 
 async function getInitialImages(): Promise<ApiResponse> {
-  const apiUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-  
+  const apiUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
   try {
     const response = await fetch(`${apiUrl}/api?skip=0&limit=15`, {
       headers: {
-        'token': process.env.API_TOKEN || '',
+        token: process.env.API_TOKEN || "",
       },
-      cache: 'no-store',
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -32,7 +32,7 @@ async function getInitialImages(): Promise<ApiResponse> {
 
     return await response.json();
   } catch (error) {
-    console.error('Failed to fetch initial images:', error);
+    console.error("Failed to fetch initial images:", error);
     return {
       total: 0,
       images: [],
@@ -44,22 +44,22 @@ export default async function RandomPage() {
   const data = await getInitialImages();
 
   return (
-    <main className="max-w-6xl flex flex-col items-center min-h-screen relative">
+    <main className="flex items-center m-auto flex-col max-w-[1240px] my-6 max-xl:mx-4 max-md:mx-2 relative">
       <header className="my-4">
         <img src="/title.svg" alt="Vercel Logo" width={360} height={100} />
       </header>
       <h2 className="text-xl max-md:text-base">
         愛猫「らて」のLGTM画像を集めました。LGTMする際にお使いください。
       </h2>
-      
+
       <TabNavigation />
-      
+
       <InfiniteScrollImages
         initialImages={data.images}
         initialTotal={data.total}
         apiEndpoint="/api"
       />
-      
+
       <Snackbar />
     </main>
   );
