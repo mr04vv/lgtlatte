@@ -6,7 +6,11 @@ type Props = {
   basePath?: string;
 };
 
-export const Pagination = ({ currentPage, totalPages, basePath = "/pages" }: Props) => {
+export const Pagination = ({
+  currentPage,
+  totalPages,
+  basePath = "/pages",
+}: Props) => {
   if (totalPages <= 1) return null;
 
   const getPageHref = (page: number) => {
@@ -17,13 +21,25 @@ export const Pagination = ({ currentPage, totalPages, basePath = "/pages" }: Pro
   const renderPageNumbers = () => {
     const pages = [];
     const maxVisiblePages = 5;
-    
-    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    
-    if (endPage - startPage + 1 < maxVisiblePages) {
-      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+
+    let calculatedStartPage = Math.max(
+      1,
+      currentPage - Math.floor(maxVisiblePages / 2)
+    );
+    const calculatedEndPage = Math.min(
+      totalPages,
+      calculatedStartPage + maxVisiblePages - 1
+    );
+
+    if (calculatedEndPage - calculatedStartPage + 1 < maxVisiblePages) {
+      calculatedStartPage = Math.max(
+        1,
+        calculatedEndPage - maxVisiblePages + 1
+      );
     }
+
+    const startPage = calculatedStartPage;
+    const endPage = calculatedEndPage;
 
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
@@ -46,39 +62,28 @@ export const Pagination = ({ currentPage, totalPages, basePath = "/pages" }: Pro
 
   return (
     <div className="absolute bottom-0 flex justify-center items-center gap-2 w-screen px-4">
-      <PageButton 
-        isActive={currentPage > 1} 
+      <PageButton
+        isActive={currentPage > 1}
         page={currentPage === 2 ? 1 : currentPage - 1}
       >
         ←
       </PageButton>
 
-      <PageButton 
-        isActive={currentPage > 1} 
-        page={1}
-      >
+      <PageButton isActive={currentPage > 1} page={1}>
         ≪
       </PageButton>
 
-      <div className="flex gap-2 max-md:hidden">
-        {renderPageNumbers()}
-      </div>
+      <div className="flex gap-2 max-md:hidden">{renderPageNumbers()}</div>
 
       <div className="md:hidden text-[#FCF0DE] text-xl">
         {currentPage} / {totalPages}
       </div>
 
-      <PageButton 
-        isActive={currentPage < totalPages} 
-        page={totalPages}
-      >
+      <PageButton isActive={currentPage < totalPages} page={totalPages}>
         ≫
       </PageButton>
 
-      <PageButton 
-        isActive={currentPage < totalPages} 
-        page={currentPage + 1}
-      >
+      <PageButton isActive={currentPage < totalPages} page={currentPage + 1}>
         →
       </PageButton>
     </div>
