@@ -1,7 +1,7 @@
 "use client";
 
-import imageLoader from "@/lib/imageLoader";
 import Image from "next/image";
+import imageLoader from "@/lib/imageLoader";
 
 export const LgtmImage = ({ url }: { url: string }) => {
   return (

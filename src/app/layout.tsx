@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { apolloClient } from "@/lib/apolloClient";
 import {
   LgtlatteOgpDocument,
-  LgtlatteOgpQuery,
-  LgtlatteOgpQueryVariables,
+  type LgtlatteOgpQuery,
+  type LgtlatteOgpQueryVariables,
 } from "@/generated/schema";
+import { apolloClient } from "@/lib/apolloClient";
 
 export async function generateMetadata(): Promise<Metadata> {
   const res = await apolloClient.query<

@@ -1,16 +1,17 @@
 export const dynamic = "force-static";
-import { apolloClient } from "@/lib/apolloClient";
+
+import { LgtmImage } from "@/app/components/LgtmImage";
+import { PageButton } from "@/app/components/PageButton";
+import { Snackbar } from "@/app/components/Snackbar";
+import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
 import {
   AssetCollectionDocument,
   AssetCollectionTotalDocument,
-  AssetCollectionTotalQuery,
-  Query,
-  QueryAssetCollectionArgs,
+  type AssetCollectionTotalQuery,
+  type Query,
+  type QueryAssetCollectionArgs,
 } from "@/generated/schema";
-import { LgtmImage } from "@/app/components/LgtmImage";
-import { SIZE_PER_PAGE } from "@/app/constants/sizePerPage";
-import { Snackbar } from "@/app/components/Snackbar";
-import { PageButton } from "@/app/components/PageButton";
+import { apolloClient } from "@/lib/apolloClient";
 
 export const generateStaticParams = async () => {
   const res = await apolloClient.query<
@@ -57,7 +58,7 @@ export default async function Home({
       </h2>
       <div className="grid grid-cols-3 gap-8 max-xl:grid-cols-3 max-md:grid-cols-1 mt-6 mb-16">
         {items.map((item) => (
-          <div className="h-auto max-h-96 w-auto relative">
+          <div key={item?.title} className="h-auto max-h-96 w-auto relative">
             <LgtmImage url={item?.url ?? ""} />
           </div>
         ))}
