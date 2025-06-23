@@ -1,6 +1,6 @@
 import {
-  AssetCollectionApiQuery,
   AssetCollectionApiDocument,
+  type AssetCollectionApiQuery,
 } from "@/generated/schema";
 import { apolloClient } from "@/lib/apolloClient";
 
