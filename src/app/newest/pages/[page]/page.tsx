@@ -39,7 +39,7 @@ export default async function NewestPaginatedPage({
   const res = await apolloClient.query<Query, QueryAssetCollectionArgs>({
     query: AssetCollectionDocument,
     variables: {
-      skip: SIZE_PER_PAGE * (parseInt(params.page) - 1),
+      skip: SIZE_PER_PAGE * (Number.parseInt(params.page, 10) - 1),
       limit: SIZE_PER_PAGE,
     },
   });

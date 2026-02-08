@@ -34,8 +34,8 @@ export async function GET(request: Request) {
     return Response.json({ message: "Unauthorized" }, { status: 401 });
 
   const { searchParams } = new URL(request.url);
-  const skip = parseInt(searchParams.get("skip") ?? "0", 10);
-  const limit = parseInt(searchParams.get("limit") ?? "15", 10);
+  const skip = Number.parseInt(searchParams.get("skip") ?? "0", 10);
+  const limit = Number.parseInt(searchParams.get("limit") ?? "15", 10);
 
   const res = await apolloClient.query<AssetCollectionApiQuery>({
     query: AssetCollectionApiDocument,

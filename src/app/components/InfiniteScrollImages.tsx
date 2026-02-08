@@ -118,7 +118,7 @@ export const InfiniteScrollImages = ({
       {/* Loading indicator */}
       {isLoading && (
         <div className="flex justify-center items-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#59370F]"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#59370F]" />
           <span className="ml-3 text-[#59370F] text-lg">Loading...</span>
         </div>
       )}

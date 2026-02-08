@@ -20,7 +20,7 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.0.4",
+    "@biomejs/biome": "2.3.14",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/typescript": "4.0.7",
     "@graphql-codegen/typescript-operations": "4.2.1",

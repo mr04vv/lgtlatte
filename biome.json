@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -7,17 +7,23 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json"],
-    "experimentalScannerIgnores": [
-      ".next/**",
-      "node_modules/**",
-      "dist/**",
-      "build/**",
-      "coverage/**",
-      "*.config.[jt]s",
-      "*.config.m[jt]s",
-      "src/generated/**",
-      "public/**"
+    "includes": [
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.json",
+      "!!**/.next",
+      "!!**/node_modules",
+      "!!**/dist",
+      "!!**/build",
+      "!!**/coverage",
+      "!!**/*.config.js",
+      "!!**/*.config.ts",
+      "!!**/*.config.mjs",
+      "!!**/*.config.mts",
+      "!!**/src/generated",
+      "!!**/public"
     ]
   },
   "formatter": {
@@ -35,7 +41,17 @@
       "recommended": true,
       "style": {
         "useTemplate": "off",
-        "noNonNullAssertion": "off"
+        "noNonNullAssertion": "off",
+        "noParameterAssign": "error",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useEnumInitializers": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error"
       },
       "suspicious": {
         "noExplicitAny": "off"
@@ -45,9 +61,6 @@
       },
       "performance": {
         "noImgElement": "off"
-      },
-      "nursery": {
-        "useUniqueElementIds": "off"
       }
     }
   },
