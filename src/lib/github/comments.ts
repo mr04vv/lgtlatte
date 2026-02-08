@@ -22,12 +22,15 @@ export async function postLgtmComment({
     const octokit = await getOctokitForInstallation(installationId);
 
     // Create comment with image markdown
-    await octokit.request("POST /repos/{owner}/{repo}/issues/{issue_number}/comments", {
-      owner,
-      repo,
-      issue_number: issueNumber,
-      body: `![LGTM](${imageUrl})`,
-    });
+    await octokit.request(
+      "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
+      {
+        owner,
+        repo,
+        issue_number: issueNumber,
+        body: `![LGTM](${imageUrl})`,
+      }
+    );
 
     console.log(
       `Successfully posted LGTM comment to ${owner}/${repo}#${issueNumber}`

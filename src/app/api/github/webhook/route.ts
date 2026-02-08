@@ -1,7 +1,7 @@
 import { Webhooks } from "@octokit/webhooks";
 import type { PullRequestReviewEvent } from "@octokit/webhooks-types";
-import { handlePullRequestReview } from "@/lib/github/webhooks";
 import { NextResponse } from "next/server";
+import { handlePullRequestReview } from "@/lib/github/webhooks";
 
 if (!process.env.GITHUB_WEBHOOK_SECRET) {
   throw new Error("GITHUB_WEBHOOK_SECRET is not set");
@@ -50,10 +50,7 @@ export async function POST(request: Request) {
     console.error("Webhook processing error:", error);
 
     if (error instanceof Error && error.message.includes("signature")) {
-      return NextResponse.json(
-        { error: "Invalid signature" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
     }
 
     return NextResponse.json(
